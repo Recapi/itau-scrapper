@@ -1,0 +1,17 @@
+C:\Users\renan\source\repos\itau_scrapper\itau_scrapper\bin\Debug\netcoreapp3.1\itau_scrapper.exe
+C:\Users\renan\source\repos\itau_scrapper\itau_scrapper\obj\Debug\netcoreapp3.1\itau_scrapper.AssemblyInfoInputs.cache
+C:\Users\renan\source\repos\itau_scrapper\itau_scrapper\obj\Debug\netcoreapp3.1\itau_scrapper.AssemblyInfo.cs
+C:\Users\renan\source\repos\itau_scrapper\itau_scrapper\bin\Debug\netcoreapp3.1\Newtonsoft.Json.dll
+C:\Users\renan\source\repos\itau_scrapper\itau_scrapper\bin\Debug\netcoreapp3.1\WebDriver.dll
+C:\Users\renan\source\repos\itau_scrapper\itau_scrapper\obj\Debug\netcoreapp3.1\itau_scrapper.csprojAssemblyReference.cache
+C:\Users\renan\source\repos\itau_scrapper\itau_scrapper\obj\Debug\netcoreapp3.1\itau_scrapper.csproj.CopyComplete
+C:\Users\renan\source\repos\itau_scrapper\itau_scrapper\bin\Debug\netcoreapp3.1\itau_scrapper.deps.json
+C:\Users\renan\source\repos\itau_scrapper\itau_scrapper\bin\Debug\netcoreapp3.1\itau_scrapper.runtimeconfig.json
+C:\Users\renan\source\repos\itau_scrapper\itau_scrapper\bin\Debug\netcoreapp3.1\itau_scrapper.runtimeconfig.dev.json
+C:\Users\renan\source\repos\itau_scrapper\itau_scrapper\bin\Debug\netcoreapp3.1\itau_scrapper.dll
+C:\Users\renan\source\repos\itau_scrapper\itau_scrapper\bin\Debug\netcoreapp3.1\itau_scrapper.pdb
+C:\Users\renan\source\repos\itau_scrapper\itau_scrapper\bin\Debug\netcoreapp3.1\SeleniumExtras.WaitHelpers.dll
+C:\Users\renan\source\repos\itau_scrapper\itau_scrapper\obj\Debug\netcoreapp3.1\itau_scrapper.csproj.CoreCompileInputs.cache
+C:\Users\renan\source\repos\itau_scrapper\itau_scrapper\obj\Debug\netcoreapp3.1\itau_scrapper.dll
+C:\Users\renan\source\repos\itau_scrapper\itau_scrapper\obj\Debug\netcoreapp3.1\itau_scrapper.pdb
+C:\Users\renan\source\repos\itau_scrapper\itau_scrapper\obj\Debug\netcoreapp3.1\itau_scrapper.genruntimeconfig.cache
