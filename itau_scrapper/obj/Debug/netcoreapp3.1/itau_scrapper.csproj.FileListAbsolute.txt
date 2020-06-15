@@ -11,7 +11,9 @@ C:\Users\renan\source\repos\itau_scrapper\itau_scrapper\bin\Debug\netcoreapp3.1\
 C:\Users\renan\source\repos\itau_scrapper\itau_scrapper\bin\Debug\netcoreapp3.1\itau_scrapper.dll
 C:\Users\renan\source\repos\itau_scrapper\itau_scrapper\bin\Debug\netcoreapp3.1\itau_scrapper.pdb
 C:\Users\renan\source\repos\itau_scrapper\itau_scrapper\bin\Debug\netcoreapp3.1\SeleniumExtras.WaitHelpers.dll
-C:\Users\renan\source\repos\itau_scrapper\itau_scrapper\obj\Debug\netcoreapp3.1\itau_scrapper.csproj.CoreCompileInputs.cache
 C:\Users\renan\source\repos\itau_scrapper\itau_scrapper\obj\Debug\netcoreapp3.1\itau_scrapper.dll
 C:\Users\renan\source\repos\itau_scrapper\itau_scrapper\obj\Debug\netcoreapp3.1\itau_scrapper.pdb
 C:\Users\renan\source\repos\itau_scrapper\itau_scrapper\obj\Debug\netcoreapp3.1\itau_scrapper.genruntimeconfig.cache
+C:\Users\renan\source\repos\itau_scrapper\itau_scrapper\bin\Debug\netcoreapp3.1\HtmlAgilityPack.dll
+C:\Users\renan\source\repos\itau_scrapper\itau_scrapper\bin\Debug\netcoreapp3.1\AngleSharp.dll
+C:\Users\renan\source\repos\itau_scrapper\itau_scrapper\obj\Debug\netcoreapp3.1\itau_scrapper.csproj.CoreCompileInputs.cache

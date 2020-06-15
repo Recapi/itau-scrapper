@@ -42,9 +42,17 @@
       "frameworks": {
         "netcoreapp3.1": {
           "dependencies": {
+            "AngleSharp": {
+              "target": "Package",
+              "version": "[0.14.0, )"
+            },
             "DotNetSeleniumExtras.WaitHelpers": {
               "target": "Package",
               "version": "[3.11.0, )"
+            },
+            "HtmlAgilityPack": {
+              "target": "Package",
+              "version": "[1.11.24, )"
             },
             "Selenium.WebDriver": {
               "target": "Package",

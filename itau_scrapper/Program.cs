@@ -1,7 +1,15 @@
 ﻿using System;
+using System.Collections.Generic;
+using System.IO;
+using System.Linq;
+using System.Text.RegularExpressions;
 using System.Threading;
+using AngleSharp.Html;
+using AngleSharp.Html.Parser;
+using HtmlAgilityPack;
 using OpenQA.Selenium;
 using OpenQA.Selenium.Chrome;
+using OpenQA.Selenium.Interactions;
 using OpenQA.Selenium.Support.UI;
 using SeleniumExtras.WaitHelpers;
 
@@ -122,6 +130,9 @@ namespace itau_scrapper
                 Environment.Exit(0);
             }
 
+            IJavaScriptExecutor js = (IJavaScriptExecutor)driver;
+            js.ExecuteScript("popFechar()");
+
             var saldoHTML = driver.FindElement(By.Id("saldo")).GetAttribute("innerHTML");
             var primeiro = saldoHTML.IndexOf("<small>");
             var ultimo = saldoHTML.LastIndexOf("</small>");
@@ -130,14 +141,105 @@ namespace itau_scrapper
             var substring = saldoHTML.Substring(primeiro, ultimo - primeiro).Replace("<small>", "").Replace("</small>", "").Replace("R$", "").Replace(@"\r", "").Replace(@"\n", "").Replace(@"\t", "").Trim();
 
             double saldo = Double.Parse(substring);
+
+            //ACESSA MENU
+            //Actions builder = new Actions(driver);
+            //IWebElement element = driver.FindElement(By.ClassName("ico-header-menu"));
+            //builder.MoveToElement(element).Build().Perform();
+            //try
+            //{
+            //}
+            //catch (Exception e)
+            //{
+            //}
+
+
+            driver.FindElement(By.Id("accordionExibirBoxCartoes")).Click();
+
+            Thread.Sleep(2000);
+
+
+            var cartHTML = driver.FindElement(By.Id("exibirBoxCartoes")).GetAttribute("innerHTML");
+            var primeirotable = cartHTML.IndexOf("<table");
+            var ultimotable = cartHTML.LastIndexOf("</table>");
+
+            var substringCartao = cartHTML.Substring(primeirotable, ultimotable - primeirotable + 9).Replace(@"\r", "").Replace(@"\n", "").Replace(@"\t", "").Replace("\r", "").Replace("\n", "").Replace("\t", "").Trim();
+
+
+            HtmlDocument doc = new HtmlDocument();
+
+            doc.LoadHtml(substringCartao);
+
+            var HTMLTableTRList = from table in doc.DocumentNode.SelectNodes("//table").Cast<HtmlNode>()
+                                  from row in table.SelectNodes("//tr").Cast<HtmlNode>()
+                                  from cell in row.SelectNodes("th|td").Cast<HtmlNode>()
+                                  select new { Table_Name = table.Id, Cell_Text = cell.InnerText };
+
+            List<cartaoDTO> listaCartao = new List<cartaoDTO>();
+            int celula = 1;
+            cartaoDTO cartao = new cartaoDTO();
+            foreach (var cell in HTMLTableTRList.Skip(4))
+            {
+                var texto = Regex.Replace(cell.Cell_Text, @"\s+", " ").Trim();
+
+                if (celula ==1 )
+                {
+                    cartao = new cartaoDTO();
+                    var posicaofinal = texto.IndexOf("final");
+                    var posicaolimite = texto.IndexOf("Limite disponível");
+                    
+                    cartao.Nome = texto.Substring(0, posicaofinal-2).Trim();
+                    cartao.Final = texto.Substring(posicaofinal+5, posicaolimite - posicaofinal-5).Trim();
+
+                    var textoDisponivel = texto.Substring(posicaolimite+ "Limite disponível".Length, texto.Length - posicaolimite- "Limite disponível".Length).Replace("R$", "").Replace(":", "").Trim();
+                    cartao.Disponivel = Double.Parse(textoDisponivel);
+                }
+
+                if (celula == 2)
+                {
+                    int dia = Int32.Parse(texto.Substring(0, 2));
+                    int mes = Int32.Parse(texto.Substring(3, 2));
+                    int ano = Int32.Parse(texto.Substring(6, 4));
+
+                    cartao.dataVencimentoProxfatura = new DateTime(ano, mes, dia);
+                }
+                if (celula == 3)
+                {
+                    cartao.FaturaAtual = Double.Parse(texto);
+                }
+
+                if (celula == 4)
+                {
+                    cartao.Fechada = !texto.Equals("aberta");
+                    listaCartao.Add(cartao);
+                    celula = 0;
+
+                }
+
+                celula++;
+
+            }
+
             driver.Dispose();
 
-            Console.WriteLine("Seu saldo : " + saldo + ": Enter para sair");
+            Console.WriteLine("Seu saldo : " + saldo);
+            Console.WriteLine("Seu(s) Cartões");
 
+            foreach (var item in listaCartao)
+            {
+                Console.WriteLine(item.ToString());
+            }
+
+            
             string path = Environment.GetFolderPath(Environment.SpecialFolder.Desktop);
+
             using (System.IO.StreamWriter file = new System.IO.StreamWriter(path + @"\Saldo.txt", true))
             {
                 file.WriteLine(saldo + " na data de : " + DateTime.Now);
+                foreach (var item in listaCartao)
+                {
+                    file.WriteLine(item.ToString() + " na data de : " + DateTime.Now);
+                }
             }
 
         }
